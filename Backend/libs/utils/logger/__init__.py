@@ -8,7 +8,7 @@ from logging.handlers import RotatingFileHandler
 from colorlog import ColoredFormatter
 
 from libs.utils import config
-from libs.vendors import teams
+
 
 # Context variable to store request path
 request_path_var = ContextVar("request_route", default="-")
@@ -108,7 +108,7 @@ def setup_logger(
     if enable_file_logger:
         logger.addHandler(FileLogger(app_name).get_handler())
     if enable_teams_logger:
-        logger.addHandler(teams.TeamsLogger())
+        pass
     if enable_slack_logger:
         pass
 
