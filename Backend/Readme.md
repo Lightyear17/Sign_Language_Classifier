@@ -56,7 +56,7 @@ Backend/
 
 1. **Clone the Repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/Lightyear17/Sign_Language_Classifier.git
    cd Sign_Language_Classifier/Backend
    ```
 
