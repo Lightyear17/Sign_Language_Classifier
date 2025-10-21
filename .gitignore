@@ -4,6 +4,9 @@ __pycache__/
 *.pyo
 *.pyd
 
+# Compressed files
+*.zip
+
 # Virtual environment
 .venv/
 venv/
@@ -32,3 +35,5 @@ dist/
 
 # If you only want to ignore venv inside Backend folder
 Backend/.venv/
+Backend/*.zip
+Backend/.env
