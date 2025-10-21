@@ -26,4 +26,4 @@ async def read_root():
 app.include_router(SLC_Router)
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host=HOST or "0.0.0.0", port=PORT)
+    uvicorn.run("src.app:app", host=HOST or "0.0.0.0", port=PORT)
