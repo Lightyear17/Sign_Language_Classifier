@@ -10,4 +10,6 @@ config = dotenv_values(env_path)
 
 
 HOST = config.get("HOST")
-PORT = int(config.get("PORT", 8000))
+_port_raw = config.get("PORT")
+PORT = int(_port_raw) if _port_raw else 8000
+MODEL_PATH = config.get("MODEL_PATH")
