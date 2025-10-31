@@ -33,7 +33,37 @@ build/
 dist/
 *.egg-info/
 
-# If you only want to ignore venv inside Backend folder
+# Backend specific
 Backend/.venv/
 Backend/*.zip
 Backend/.env
+
+# Frontend specific
+Frontend/node_modules/
+Frontend/package-lock.json
+Frontend/yarn.lock
+Frontend/pnpm-lock.yaml
+Frontend/build/
+Frontend/dist/
+Frontend/.next/
+Frontend/out/
+Frontend/.nuxt/
+Frontend/.output/
+Frontend/.env
+Frontend/.env.local
+Frontend/.env.development.local
+Frontend/.env.test.local
+Frontend/.env.production.local
+Frontend/.cache/
+Frontend/.parcel-cache/
+Frontend/.eslintcache
+Frontend/.stylelintcache
+Frontend/.vercel
+Frontend/.turbo
+Frontend/npm-debug.log*
+Frontend/yarn-debug.log*
+Frontend/yarn-error.log*
+Frontend/pnpm-debug.log*
+Frontend/lerna-debug.log*
+Frontend/coverage/
+Frontend/.nyc_output/
