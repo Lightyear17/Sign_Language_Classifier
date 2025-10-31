@@ -3,10 +3,10 @@ from fastapi.responses import JSONResponse
 from src.helper.slc import load_interpreter, preprocess_image, predict_gesture
 from src import logger
 
-SLC_Router = APIRouter(prefix="/slc-static", tags=["Static Model"])
+SLC_Static_Router = APIRouter(prefix="/slc-static", tags=["Static Model"])
 interpreter, labels = load_interpreter("STATIC")
 
-@SLC_Router.post("/predict")
+@SLC_Static_Router.post("/predict")
 async def predict_static(file: UploadFile = File(...)):
     """Predict gesture from uploaded image (static model)."""
     try:
@@ -18,6 +18,9 @@ async def predict_static(file: UploadFile = File(...)):
         result = predict_gesture(img, interpreter, labels)
         return JSONResponse(content=result)
 
+    except HTTPException as he:
+        # validation / client errors should be passed through
+        raise he
     except Exception as e:
         logger.error(f"Static prediction failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
