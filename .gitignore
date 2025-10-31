@@ -38,42 +38,59 @@ Backend/.venv/
 Backend/*.zip
 Backend/.env
 
+<<<<<<< HEAD
 # Frontend
 # Dependencies
+=======
+# Frontend specific
+>>>>>>> feature/backend-update
 Frontend/node_modules/
 Frontend/package-lock.json
 Frontend/yarn.lock
 Frontend/pnpm-lock.yaml
+<<<<<<< HEAD
 
 # Production builds
+=======
+>>>>>>> feature/backend-update
 Frontend/build/
 Frontend/dist/
 Frontend/.next/
 Frontend/out/
 Frontend/.nuxt/
 Frontend/.output/
+<<<<<<< HEAD
 
 # Environment variables
+=======
+>>>>>>> feature/backend-update
 Frontend/.env
 Frontend/.env.local
 Frontend/.env.development.local
 Frontend/.env.test.local
 Frontend/.env.production.local
+<<<<<<< HEAD
 
 # Cache and temp files
+=======
+>>>>>>> feature/backend-update
 Frontend/.cache/
 Frontend/.parcel-cache/
 Frontend/.eslintcache
 Frontend/.stylelintcache
 Frontend/.vercel
 Frontend/.turbo
+<<<<<<< HEAD
 
 # Debug logs
+=======
+>>>>>>> feature/backend-update
 Frontend/npm-debug.log*
 Frontend/yarn-debug.log*
 Frontend/yarn-error.log*
 Frontend/pnpm-debug.log*
 Frontend/lerna-debug.log*
+<<<<<<< HEAD
 
 # Testing
 Frontend/coverage/
@@ -82,3 +99,7 @@ Frontend/.nyc_output/
 # Misc
 Frontend/.DS_Store
 Frontend/*.pem
+=======
+Frontend/coverage/
+Frontend/.nyc_output/
+>>>>>>> feature/backend-update
