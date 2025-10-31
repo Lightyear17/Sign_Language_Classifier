@@ -5,7 +5,7 @@ import uvicorn
 from src import logger
 from libs.utils.config import HOST, PORT
 from libs.utils.middleware.service import ServiceMiddleware
-from src.routes.slc import SLC_Router
+from src.routes.slc_cnn import SLC_Router
 
 app = FastAPI()
 
