@@ -12,14 +12,17 @@ A modern React frontend application for classifying American Sign Language (ASL)
 
 ## ✨ Features
 
-- **Multiple Upload Methods**: 
-  - Direct file upload (drag & drop interface)
-  - Load images from URL
-- **Real-time Predictions**: Instant ASL letter recognition
+- **Static Gesture Recognition**: 
+  - Upload image files (drag & drop interface)
+  - Predict ASL letters from static images
+- **Real-time Hand Gesture Detection**: 
+  - Live camera feed with MediaPipe hand tracking
+  - Real-time ASL gesture recognition
 - **Visual Feedback**: 
-  - Image preview
+  - Image/video preview
   - Confidence score visualization
   - Loading states and error handling
+  - FPS counter for real-time mode
 - **Responsive Design**: Clean and intuitive user interface
 - **Error Handling**: Comprehensive validation and user-friendly error messages
 
@@ -31,6 +34,10 @@ Frontend/
 │   ├── App.jsx                     # Main application component
 │   ├── App.css                     # Application styles
 │   ├── main.jsx                    # Application entry point
+│   ├── components/
+│   │   ├── Staticgesture.jsx       # Static image gesture recognition
+│   │   ├── Handgesture.jsx         # Real-time hand gesture detection
+│   │   └── mediapipe/              # MediaPipe utilities
 │   └── index.css                   # Global styles
 ├── public/                         # Static assets
 ├── .env                           # Environment variables (not committed)
@@ -60,14 +67,26 @@ Frontend/
    ```
 
 3. **Configure Environment Variables**
-   ```bash
-   # Copy example.env to .env
-   cp .env.example .env
-   
-   # Edit .env with your API URL
-   # Example:
-   VITE_API_BASE_URL=http://localhost:8000
+
+   Copy the example env file to a real `.env` in the project root and set your backend API URL. Vite only exposes variables that begin with `VITE_` to client-side code.
+
+   - PowerShell (Windows):
+
+   ```powershell
+   Copy-Item .env.example .env
+   # then edit .env and set your backend URL:
+   # VITE_API_BASE_URL=http://127.0.0.1:8000
    ```
+
+   - macOS / Linux (bash):
+
+   ```bash
+   cp .env.example .env
+   # then edit .env and set your backend URL:
+   # VITE_API_BASE_URL=http://127.0.0.1:8000
+   ```
+
+   After changing or creating `.env`, restart the Vite dev server so the new variables are picked up.
 
 4. **Run Development Server**
    ```bash
@@ -94,43 +113,52 @@ Frontend/
 
 The frontend communicates with the FastAPI backend through the following endpoints:
 
-- **File Upload**: `POST /slc/predict`
-- **URL Upload**: `POST /slc/predict/url`
+### Static Gesture Recognition
+- **File Upload Prediction**: `POST /slc-static/predict`
+  - Accepts: FormData with image file
+  - Returns: `{ label: string, confidence: float }`
+
+### Real-time Hand Gesture Detection
+- **Hand Landmarks Prediction**: `POST /slc-realtime/predict`
+  - Accepts: `{ landmarks: [x1, y1, x2, y2, ..., x21, y21] }` (42 values)
+  - Returns: `{ label: string, confidence: float }`
 
 ### Environment Variables
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `VITE_API_BASE_URL` | Backend API base URL | `http://localhost:8000` |
+| `VITE_API_BASE_URL` | Backend API base URL | `http://127.0.0.1:8000` |
 
-⚠️ **Important**: The `VITE_` prefix is required for Vite to expose the variable to your client-side code.
+⚠️ **Important**: 
+- The `VITE_` prefix is required for Vite to expose the variable to your client-side code.
+- Update `.env.example` with `VITE_API_BASE_URL=http://127.0.0.1:8000` for local development.
 
 ## 🎨 Features Overview
 
-### Image Upload
-- Supports PNG, JPG, JPEG formats
-- Maximum file size: 10MB
+### Static Gesture Recognition (`Staticgesture.jsx`)
+- Upload image files (PNG, JPG, JPEG)
 - Real-time file validation
 - Image preview before prediction
-
-### URL Loading
-- Paste any valid image URL
-- Automatic image validation
-- Error handling for invalid/unreachable URLs
-
-### Prediction Results
-- Displays detected ASL letter
-- Shows confidence percentage
+- Displays predicted sign letter and confidence score
 - Visual confidence bar
-- Option to analyze another image
+
+### Real-time Hand Gesture Detection (`Handgesture.jsx`)
+- Live video feed from webcam
+- MediaPipe-based hand landmark detection
+- Real-time ASL gesture recognition
+- FPS counter and live indicator
+- Hand skeleton visualization
+- Instant gesture predictions
 
 ## 🔒 Security Considerations
 
-- Never commit `.env` files to version control
+- Never commit `.env` files to version control (use `.env.example` as template)
 - Validate all user inputs before sending to backend
-- Implement rate limiting for production
+- Implement rate limiting in production
 - Use HTTPS in production environments
-- Sanitize image URLs to prevent XSS attacks
+- Configure proper CORS headers in backend to match frontend origin
+- Restrict camera access permissions with user consent
+- Never expose API keys or sensitive credentials in client-side code
 
 ## 🐛 Troubleshooting
 
@@ -140,10 +168,18 @@ The frontend communicates with the FastAPI backend through the following endpoin
 - Check if port 5173 is already in use
 
 ### API connection errors
-- Verify backend server is running
-- Check `VITE_API_BASE_URL` in `.env` file
-- Ensure CORS is properly configured in backend
+- Verify backend server is running on the configured URL
+- Check `VITE_API_BASE_URL` in `.env` file matches your backend
+- Ensure CORS is properly configured in the FastAPI backend
 - Restart dev server after changing `.env`
+- Check browser console for detailed error messages
+- Verify backend endpoints: `/slc-static/predict` and `/slc-realtime/predict`
+
+### MediaPipe loading errors (real-time mode)
+- Ensure internet connection (MediaPipe CDN scripts need to load)
+- Check browser console for CDN loading issues
+- Try clearing browser cache and hard refresh (Ctrl+Shift+R)
+- Verify camera permissions are granted
 
 ### Build fails
 - Clear Vite cache: `rm -rf node_modules/.vite`
