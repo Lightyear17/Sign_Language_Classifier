@@ -10,12 +10,15 @@ This project consists of two main components:
 
 ## 🌟 Key Features
 
-- 📸 **Multiple Input Methods**: Upload files or provide image URLs
-- 🤖 **AI-Powered**: CNN model trained on Sign Language MNIST dataset
-- 🔤 **24 ASL Letters**: Recognizes A-Y (J and Z excluded as they require motion)
+- 📸 **Static Gesture Recognition**: Upload images or provide URLs for ASL letter classification
+- ✋ **Real-Time Hand Detection**: Live camera feed with MediaPipe hand tracking for continuous recognition
+- 🤖 **Dual-Model System**: 
+  - CNN model for static image classification
+  - DNN model for real-time hand landmark recognition
 - 📊 **Confidence Scores**: Visual representation of prediction confidence
-- ⚡ **Real-time Processing**: Fast predictions with modern tech stack
+- ⚡ **Fast Processing**: Optimized with TensorFlow and TensorFlow Lite
 - 🎨 **Responsive UI**: Clean, intuitive interface for all devices
+- 🧪 **Fully Tested**: Comprehensive unit tests with pytest and mocking
 
 ## 📁 Project Structure
 
@@ -72,16 +75,20 @@ For detailed setup, configuration, and usage instructions, please refer to:
 ## 🛠 Tech Stack
 
 ### Backend
-- **Framework**: FastAPI
-- **ML/AI**: TensorFlow, Keras
-- **Image Processing**: OpenCV, Pillow
+- **Framework**: FastAPI 0.104+
+- **ML/AI**: TensorFlow 2.15+, Keras
+- **Image Processing**: OpenCV, MediaPipe, Pillow
+- **Data Processing**: NumPy, Pandas
 - **Server**: Uvicorn
+- **Testing**: Pytest with mocking
 
 ### Frontend
-- **Framework**: React 19
-- **Build Tool**: Vite
+- **Framework**: React 19.1.1
+- **Build Tool**: Vite 7.1.7
+- **Hand Detection**: MediaPipe
 - **Icons**: Lucide React
 - **Styling**: Custom CSS
+- **HTTP Client**: Fetch API
 
 ## 🔧 Configuration
 
