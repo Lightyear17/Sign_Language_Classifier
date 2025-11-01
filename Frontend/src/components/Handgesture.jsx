@@ -371,6 +371,10 @@ const GestureRecognitionApp = () => {
                   <span className="instruction-number">4.</span>
                   <span>View real-time predictions on screen</span>
                 </li>
+                <li className="instruction-item">
+                  <span className="instruction-number">5.</span>
+                  <span>Use Left Hand for Better Accuracy</span>
+                </li>
               </ul>
             </div>
           </div>
